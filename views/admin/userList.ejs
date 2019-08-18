@@ -1,0 +1,142 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    <h2>Users</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">All</a></li>
+        <li><a data-toggle="tab" href="#menu1">Accepted</a></li>
+        <li><a data-toggle="tab" href="#menu2">Pending</a></li>
+        <li><a data-toggle="tab" href="#menu3">Rejected</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <div class="table-responsive">
+                <!-- PROJECT TABLE -->
+                <table class="table colored-header datatable project-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                    var list = '';
+                    for (i = 0; i < userList.length; i++) {
+                        var icon = 'img/' + userList[i].status + '_icon.png';
+                        var link = '/admin/user/' + userList[i]._id;
+                        list += '<tr data-href=' + link + '><td>'+ i + '</td><td height=25 width=25><img src=' + icon +'  style="max-width:100%; max-height:100%; display: block; margin-left: auto;margin-right: auto;"></img> </td><td>'+ userList[i].userName + '</td><td>' + userList[i].firstName+ '</td><td>' + userList[i].lastName + '</td></tr>';
+                    }
+                    %>
+                    <%- list %>
+                    </tbody>
+                </table>
+                <!-- END PROJECT TABLE -->
+            </div>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <div class="table-responsive">
+                <!-- PROJECT TABLE -->
+                <table class="table colored-header datatable project-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                    var list = '';
+                    for (i = 0; i < userList.length; i++) {
+                        if(userList[i].status != 'accepted')
+                            continue;
+                        var icon = 'img/' + userList[i].status + '_icon.png';
+                        var link = '/admin/user/' + userList[i]._id;
+                        list += '<tr data-href=' + link + '><td>'+ i + '</td><td height=25 width=25><img src=' + icon +'  style="max-width:100%; max-height:100%; display: block; margin-left: auto;margin-right: auto;"></img> </td><td>'+ userList[i].userName + '</td><td>' + userList[i].firstName+ '</td><td>' + userList[i].lastName + '</td></tr>';
+                    }
+                    %>
+                    <%- list %>
+                    </tbody>
+                </table>
+                <!-- END PROJECT TABLE -->
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <div class="table-responsive">
+                <!-- PROJECT TABLE -->
+                <table class="table colored-header datatable project-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                    var list = '';
+                    for (i = 0; i < userList.length; i++) {
+                        if(userList[i].status != 'pending')
+                            continue;
+                        var icon = 'img/' + userList[i].status + '_icon.png';
+                        var link = '/admin/user/' + userList[i]._id;
+                        list += '<tr data-href=' + link + '><td>'+ i + '</td><td height=25 width=25><img src=' + icon +'  style="max-width:100%; max-height:100%; display: block; margin-left: auto;margin-right: auto;"></img> </td><td>'+ userList[i].userName + '</td><td>' + userList[i].firstName+ '</td><td>' + userList[i].lastName + '</td></tr>';
+                    }
+                    %>
+                    <%- list %>
+                    </tbody>
+                </table>
+                <!-- END PROJECT TABLE -->
+            </div>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+            <div class="table-responsive">
+                <!-- PROJECT TABLE -->
+                <table class="table colored-header datatable project-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                    var list = '';
+                    for (i = 0; i < userList.length; i++) {
+                        if(userList[i].status != 'rejected')
+                            continue;
+                        var icon = 'img/' + userList[i].status + '_icon.png';
+                        var link = '/admin/user/' + userList[i]._id;
+                        list += '<tr data-href=' + link + '><td>'+ i + '</td><td height=25 width=25><img src=' + icon +'  style="max-width:100%; max-height:100%; display: block; margin-left: auto;margin-right: auto;"></img> </td><td>'+ userList[i].userName + '</td><td>' + userList[i].firstName+ '</td><td>' + userList[i].lastName + '</td></tr>';
+                    }
+                    %>
+                    <%- list %>
+                    </tbody>
+                </table>
+                <!-- END PROJECT TABLE -->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('*[data-href]').on('click', function() {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+
+<% include ../partials/footer %>

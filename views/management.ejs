@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+
+<div class="container">
+    <header>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Management</h1>
+                <p>User, review and/or edit your live Items</p>
+                <a href="/management/new" class="btn btn-lg btn-success">Create a new Item</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% items.forEach(function(item){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= item.image %>">
+                <div class="caption">
+                    <h4><%= item.name %></h4>
+                    <a href="/management/<%= item._id%>" class="btn btn-primary">More Info</a>
+                </div>
+            </div>
+        </div>
+
+
+        <% }); %>
+    </div>
+</div>
+
+
+<% include partials/footer %>

@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><%= data['firstName'] %> <%= data['lastName'] %></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/img/defaultUserIcon.jpg" class="img-circle img-responsive"> </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Username:</td>
+                                    <td><%= data['userName'] %></td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><%= data['email'] %></td>
+                                </tr>
+                                <tr>
+                                    <td>Date of Birth: </td>
+                                    <td><%= data['birthDate'] %></td>
+                                </tr>
+                                <tr>
+                                    <td>Location: </td>
+                                    <td><%= data['location'] %></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone Number: </td>
+                                    <td><%= data['phone'] %></td>
+                                </tr>
+                                <tr>
+                                    <td>VAT Reg Num: </td>
+                                    <td><%= data['vat'] %></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div class="button-container">
+                                <% if (data['status'] == 'pending') { %>
+                                <form method="post" action="/admin/user/<%= data['_id'] %>?_method=put"><button class="btn btn-success" name="actionButton" value="1">Approve</button></form>
+                                <form method="post" action="/admin/user/<%= data['_id'] %>?_method=put"><button class="btn btn-danger" name="actionButton" value="0">Reject</button></form>
+                                <% } %>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/admin">Go back to users list.</a>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
