@@ -3,6 +3,8 @@ const router = express.Router();
 const flash = require('express-flash');
 const passport = require("passport");
 const { User, validate } = require('../models/users');
+const Item = require('../models/items');
+const Bid = require('../models/bids');
 const middleware = require("../middleware");
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -196,6 +198,69 @@ router.get('/logout', middleware.isLoggedIn, function(req, res){
     req.flash('logged', null);
     res.redirect('/');
 });
+
+
+// router.get("/search", middleware.isLoggedIn, function(req, res){
+//     Item.find({}, function(err, allItems){
+//         if(err){
+//             console.log(err);
+//         } else {
+//             res.render("item", {items:allItems});
+//         }
+//     });
+// });
+
+// router.post("/search", middleware.isLoggedIn, function(req, res){
+//     ////find the item
+//     // Item.findById(req.body.itemid, function(err, item){
+//     //     if(err){
+//     //         console.log(err);
+//     //         res.redirect("/search");
+//     //     }
+//     //     else{
+//     //         Bid.create(req.body.quantity, function(err, bid){
+//     //             if(err){
+//     //                 console.log(err);
+//     //             }
+//     //             else{
+//     //                 bid.bidder.id = req.user._id;
+//     //                 bid.bidder.username = req.user.userName;
+//     //                 bid.bidder.location = req.user.location;
+//     //                 bid.save();
+//     //                 item.bids.push(bid);
+//     //                 item.save();
+//     //                 res.redirect('/search');
+//     //             }
+//     //         });
+//     //     }
+//     // });
+//     let bidder = {
+//         id: req.user._id,
+//         username: req.user.userName,
+//         location: req.user.location
+//     };
+//     let newBid = {amount: req.body.quantity, bidder: bidder};
+//     Bid.create(newBid, function(err, newlyCreated){
+//         if(err){
+//             console.log(err);
+//         } else {
+//             //redirect back to management page
+//             Item.findById(req.body.itemid, function (err, item) {
+//                 if (err) {
+//                     console.log(err);
+//                     res.redirect("/search");
+//                 }
+//                 else {
+//                     item.bids.push(newlyCreated);
+//                     item.save();
+//                     console.log(req.body.itemid);
+//                     res.redirect('/search');
+//                 }
+//             });
+//         }
+//     });
+//
+// });
 
 
 module.exports = router;

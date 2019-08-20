@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 
 // SCHEMA SETUP
-var itemSchema = new mongoose.Schema({
+let itemSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String,
@@ -14,7 +14,13 @@ var itemSchema = new mongoose.Schema({
             ref: "User"
         },
         username: String
-    }
+    },
+    bids: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Bid"
+        }
+    ]
 });
 
 module.exports = mongoose.model("Item", itemSchema);

@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let Item = require("../models/items");
-const Users = require('../models/users');
+// const Users = require('../models/users');
 const multer = require('multer');
 const path = require('path');
 
@@ -137,6 +137,20 @@ router.post("/", function(req, res){
     // }
 
 
+});
+
+
+////SHOW
+router.get("/:id", function(req, res){
+    //find the campground with provided ID
+    Item.findById(req.params.id, function(err, foundItem){
+        if(err){
+            console.log(err);
+        } else {
+            //render show template with that campground
+            res.render("show", {item: foundItem});
+        }
+    });
 });
 
 
