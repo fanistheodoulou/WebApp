@@ -32,14 +32,17 @@
                 <h3 class="itemName"><%= item.name %></h3>
                 <br>
                 <h4>Description:</h4> <%= item.description %>
-
+                <hr>
+                <h4>Currently:</h4> <span id="currently"><%= item.currently %></span>
+                <hr>
+                <h4>Number of Bids:</h4> <%= item.numberOfBids %>
                 <hr>
                 <h4>Date:</h4> <%= item.started %>
                 <hr>
                 <form action="/search" method="post">
-                    <input type="number" name="quantity" min="0" max="100000">
+                    <input class= "numberbox" type="number" name="quantity" min="<%= item.currently %>" max="100000">
                     <input type="text" name="itemid" value="<%= item._id %>">
-                    <input type="submit" value="Let's Bid!">
+                    <input type="submit" class="confirm" id="confirm" value="Let's Bid!">
                 </form>
             </div>
 
@@ -48,5 +51,24 @@
 
 </div>
 
+<script type="text/javascript"> $(function() {
+        $('.confirm').click(function() {
+            if ($('.numberbox').val() <=  Number($('#currently').text())){
+                alert("Your bet has to be above the currently highest bid!");
+                $('.nuberbox').val('0');
+            }
+            else {
+                return window.confirm("Are you sure?");
+            }
+
+        });
+    });</script>
+
+<!--<script type="text/javascript"> $('#confirm').click(function(){-->
+        <!--if ($(this).val() <=  $('#currently')){-->
+            <!--alert("Your bet has to be above: " + $('#currently'));-->
+            <!--$(this).val('0');-->
+        <!--}-->
+    <!--});</script>-->
 
 <% include ./partials/footer%>

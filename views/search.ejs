@@ -1,0 +1,116 @@
+<% include partials/header %>
+
+<div class="container">
+    <div id="searchbar">
+        <form class="form-line " method="POST" action="/search">
+            <input class="form_group col-8 "  type="search" name="myinput" aria-label="Search" value="<%=searchQuery.substr(searchQuery.indexOf('=')+1); %>">
+            <input type="submit" Search>
+        </form>
+    </div>
+
+    <div id="outerContainer">
+        <div id="sidebar">
+            <form  id="id-form" method="post" action="/search<%=searchQuery%>" >
+
+                <% categories.forEach(function(category){ %>
+                <% if(category.parent.name == ""){ %>
+                <button class="collapsible " type="button"><%=category.displayName%></button>
+                <div class="content ">
+                    <% categories.forEach(function(subcategory){ %>
+                    <% if(subcategory.parent.id.equals(category._id)){ %>
+
+                    <% var subcategory2Exists = false; %>
+                    <% categories.forEach(function(subcategory2){ %>
+                    <% if(subcategory2.parent.id.equals(subcategory._id)) subcategory2Exists = true; %>
+                    <% }); %>
+                    <% if(subcategory2Exists){ %>
+                    <button class="collapsible " type="button" ><%=subcategory.displayName%></button>
+                    <div class="content ">
+                        <% categories.forEach(function(subcategory2){ %>
+                        <% if(subcategory2.parent.id.equals(subcategory._id)){ %>
+                        <div class="checkbox check">
+                            <label>
+                                <input type="checkbox" type="checkbox" value="<%=subcategory2.name%>" name="category[]">
+                                <%=subcategory2.displayName%>
+                            </label>
+                        </div>
+                        <% } %>
+                        <% }); %>
+                    </div>
+                    <% }else{ %>
+                    <div class="checkbox check">
+                        <label>
+                            <input type="checkbox" type="checkbox" value="<%=subcategory.name%>" name="category[]">
+                            <%=subcategory.displayName%>
+                        </label>
+                    </div>
+                    <% } %>
+
+                    <% } %>
+                    <% }); %>
+                </div>
+                <% } %>
+                <% }); %>
+                <br>
+                <br>
+                <h4>Price Range</h4>
+                <input class="form_group"  type="text" name="PRfrom" placeholder="From" style="width:35%;">
+                <p style="display: inline-block;"> - </p>
+                <input class="form_group"  type="text" name="PRto" placeholder="To" style="display: inline-block;width:35%;">
+                <h4 style="display: inline-block;">$</h4>
+                <br>
+                <br>
+                <h4>Location</h4>
+                <input class="form_group"  type="text" name="location" placeholder="City, Country" style="width:70%;">
+                <br>
+                <br>
+                <br>
+                <input class="btn btn-lg" type="submit"  value="Aply Filter">
+            </form>
+        </div>
+
+        <div class="main">
+            <div class="products col-md-9 ">
+                <ul class="list-unstyled" id="myul">
+                    <% items.forEach(function(item){ %>
+                    <li class="media my-4 dog">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="thumbnail">
+                                <img src="<%= item.image %>">
+                                <div class="caption">
+                                    <h4><%= item.name %></h4>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
+<script language="JavaScript" type="text/javascript"  src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<% include partials/footer %>

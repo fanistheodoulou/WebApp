@@ -1,0 +1,61 @@
+<% include partials/header %>
+
+
+<div class="outterContainer" >
+    <div class="row justify-content-md-center">
+        <div class="col-sm-2" id="userList">
+            <ul class="col-sm-2 horizontal-style">
+                <% chats.forEach(function(chat){ %>
+                <% var username; if(myUsername == chat.usernames[0]) username = chat.usernames[1]; else username = chat.usernames[0];%>
+                <li >
+                    <a href='/chat/t/<%=username%>'>
+                        <div class="contact" >
+                            <p style="margin: 10%">
+                                <img src="/img/defaultUserIcon.jpg" width="30" height="30" style="align-self:left; margin-right: 10%">
+                                <%=username%>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="col-sm-10" id="chatHeaderContainer" >
+            <% var username; if(messages!="") {if(myUsername == conversation[0].usernames[0]) username = conversation[0].usernames[1]; else username = conversation[0].usernames[0];} else{username=""}%>
+            <h3 id= "chatHeader" ><%=username%></h3>
+        </div>
+        <div class="col-sm-10" id="chatBody" >
+            <div class="row">
+
+                <% messages.forEach(function(message){ %>
+                <%if(message.authorUsername == myUsername){%>
+                <div class=" talk-bubble tri-right btm-right" style="float: right; background-color: grey">
+                    <div class="talktext">
+                        <p><%=message.message%></p>
+                    </div>
+                </div>
+                <% }else{ %>
+                <div class="talk-bubble tri-right  btm-left" style="float: left; background-color: rgb(100, 156, 100)">
+                    <div class="talktext">
+                        <p><%=message.message%></p>
+                    </div>
+                </div>
+                <% } %>
+                <% }); %>
+
+            </div>
+        </div>
+        <div class="col-sm-10" id="messageBody">
+            <form  id="message" method="post" action="/chat/t/<%=username%>" >
+                <textarea name="messageText" class="form-control" placeholder="Type something..." style="float: left; resize: none; width: 90%; margin-top: 10px; height: 80px;"></textarea>
+                <button class="btn btn-primary" style=" display: inline-block; margin-left: 2%; margin-top: 30px">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+</script>
+
+<% include partials/footer %>
