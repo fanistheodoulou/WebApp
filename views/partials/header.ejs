@@ -4,7 +4,10 @@
     <title>BidYaBid</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-    <!--<link rel="stylesheet" href="/stylesheets/main.css">-->
+    <link rel="stylesheet" href="/styleSheets/main.css">
+    <link rel="stylesheet" href="/styleSheets/chat.css">
+    <link rel="stylesheet" href="/styleSheets/search.css">
+
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -25,7 +28,9 @@
                     <li><a href="/">Login</a></li>
                     <li><a href="/register">Sign Up</a></li>
                 <% } else{ %>
-                    <li><a href="/management">Signed In As <%= currentUser.userName %> </a></li>
+                    <li><a href="/management">Signed In as <%= currentUser.userName %> </a></li>
+                    <li><a href="/search"><i class="glyphicon glyphicon-search"></i></a></li>
+                    <li><a href="/chat"><i class="glyphicon glyphicon-envelope"></i></a></li>
                     <li><a href="/logout">Logout</a></li>
                 <%  }%>
 
