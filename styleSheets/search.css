@@ -1,0 +1,90 @@
+/* .jumbo{
+    background-color: rgb(180, 255, 0);
+}
+
+.carousel{
+    margin-top: 10px;
+    width: 100%;
+
+}
+
+.btnsearch {
+    background: aqua;
+    color: #000;
+}
+.btnmanage{
+    margin-left:10%;
+}
+
+.ckbox{
+    margin-left: 2%;
+}
+
+.labels{
+    cursor: pointer;
+}
+
+.jumb{
+    margin-top: 10%;
+}
+.hide{
+    transform: scale(0);
+    padding: 0;
+    width: 0;
+    transition: all 0.4s ease-in-out;
+} */
+
+.dropmenu{
+    border: none;
+    border-block-style: white;
+}
+
+.check{
+    display: block;
+    position: relative;
+}
+.dropbutton{
+    background-color: aqua;
+}
+
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+#outerContainer {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar{
+    display: table-cell;
+    width:20%;
+    vertical-align: top;
+}
+
+#products{
+    display: table-cell;
+    width:80%;
+    vertical-align: top;
+}
