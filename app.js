@@ -16,6 +16,9 @@ const { User, validate } = require('./models/users');
 let managementRoutes      = require("./routes/management");
 let adminRoutes           = require("./routes/admin");
 let indexRoutes           = require("./routes/index");
+let searchRoutes          = require("./routes/search");
+let chatRoutes            = require("./routes/chat");
+
 
 mongoose.connect("mongodb://localhost:27017/bid_ya_bid", {useNewUrlParser: true});
 app.set("view engine", "ejs");
@@ -48,8 +51,8 @@ app.use(function(req, res, next){
 app.use("/management", managementRoutes);
 app.use("/admin", adminRoutes);
 app.use("/", indexRoutes);
-
-
+app.use("/search", searchRoutes);
+app.use('/chat', chatRoutes);
 
 
 
