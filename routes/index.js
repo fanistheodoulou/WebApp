@@ -201,7 +201,7 @@ router.get('/logout', middleware.isLoggedIn, function(req, res){
 
 
 // router.get("/search", middleware.isLoggedIn, function(req, res){
-//     Item.find({}, function(err, allItems){
+//     Item.find({'status':1}, function(err, allItems){
 //         if(err){
 //             console.log(err);
 //         } else {
@@ -209,7 +209,7 @@ router.get('/logout', middleware.isLoggedIn, function(req, res){
 //         }
 //     });
 // });
-
+//
 // router.post("/search", middleware.isLoggedIn, function(req, res){
 //     ////find the item
 //     // Item.findById(req.body.itemid, function(err, item){
@@ -252,6 +252,8 @@ router.get('/logout', middleware.isLoggedIn, function(req, res){
 //                 }
 //                 else {
 //                     item.bids.push(newlyCreated);
+//                     item.currently = req.body.quantity;
+//                     item.numberOfBids += 1;
 //                     item.save();
 //                     console.log(req.body.itemid);
 //                     res.redirect('/search');
